@@ -12,7 +12,6 @@ jobs:
   build:
     executor:
       name: win/default
-    working_directory: ~/project
     steps:
       - checkout:
           path: C:\Users\circleci\project
@@ -24,7 +23,7 @@ jobs:
           command: dotnet.exe restore
       - save_cache:
           paths:
-            - C:\Users\circleci\project\AgendaVacina\.nuget\packages
+            - C:\Users\circleci\.nuget\packages
           key: dotnet-packages-v1-{{ checksum "AgendaVacina.csproj" }}
       - run:
           name: "Run Build step"
