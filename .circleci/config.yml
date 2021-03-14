@@ -7,9 +7,6 @@ workflows:
   AgendaVacina:
     jobs:
       - build
-  integration-tests:
-    jobs:
-      - browser-tests
 
 jobs:
   build:
