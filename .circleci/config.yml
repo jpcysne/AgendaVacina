@@ -1,0 +1,40 @@
+﻿version: 2.1
+
+orbs:
+  win: circleci/windows@2.4.0
+
+workflows:
+  AgendaVacina:
+    jobs:
+      - build
+  integration-tests:
+    jobs:
+      - browser-tests
+
+jobs:
+  build:
+    executor:
+      name: win/default
+    working_directory: C:\Users\circleci\project\AgendaVacina
+    steps:
+      - checkout:
+          path: C:\Users\circleci\project
+      - restore_cache:
+          keys:
+            - dotnet-packages-v1-{{ checksum "AgendaVacina.csproj" }}
+      - run:
+          name: "Install project dependencies"
+          command: dotnet.exe restore
+      - save_cache:
+          paths:
+            - C:\Users\circleci\project\AgendaVacina\.nuget\packages
+          key: dotnet-packages-v1-{{ checksum "AgendaVacina.csproj" }}
+      - run:
+          name: "Run Build step"
+          command: dotnet.exe publish -c Release -r win10-x64
+      - run:
+          name: "Test the executable"
+          command: .\bin\Release\netcoreapp3.1\win10-x64\publish\AgendaVacina.exe 
+      - store_artifacts:
+          path: .\bin\Release\netcoreapp3.1\win10-x64\publish\AgendaVacina.exe
+
