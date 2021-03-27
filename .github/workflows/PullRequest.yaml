@@ -1,12 +1,13 @@
 name: Commit on PR
 
 on: pull_request
+
 jobs:
-	comentario:
-	runs-on: ubuntu-latest
-	steps:
-		- name: Comment na PR
-		  uses: thollander/actions-comment-pull-request@master
-		  with:
-		  	message: "Comentario de exercício da aula de 4 da cadeira de CI."
-		  	GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  comentario:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Comment na PR
+      uses: jpcysne/actions-comment-pull-request@master
+      with:
+         message: "Comentario de exercício da aula de 4 da cadeira de CI."
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
