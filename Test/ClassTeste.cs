@@ -10,7 +10,7 @@ namespace AgendaVacina.Test
 
         public void Test()
         {
-            Console.WriteLine("teste2");
+            Console.WriteLine("teste3");
         }
     }
 }
